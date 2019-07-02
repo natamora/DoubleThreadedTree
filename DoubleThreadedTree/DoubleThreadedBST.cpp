@@ -139,8 +139,12 @@ void DoubleThreadedBST::postOrder(TreeNode * pNode)
 	if (pNode == pRoot) {
 		return;
 	}
-	postOrder(pNode->pLeft);
-	postOrder(pNode->pRight);
+	if (pNode->lTag == 1) {
+		postOrder(pNode->pLeft);
+	}
+	if (pNode->rTag == 1) {
+		postOrder(pNode->pRight);
+	}
 	printf("%d ", pNode->key);
 }
 
