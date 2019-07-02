@@ -103,6 +103,47 @@ TreeNode* DoubleThreadedBST::inOrderSuccessor(TreeNode * pNode)
 	return qNode;
 }
 
+TreeNode * DoubleThreadedBST::preOrderSuccessor(TreeNode* pNode)
+{
+	// jeœli wêze³ ma lewe poddrzewo to nastepnikiem jest jego lewe dziecko
+	if (pNode->lTag == 1) {
+	
+		return pNode->pLeft;
+	}
+	//dopóki wêze³ nie bêdzie mia³ prawego poddrzewa lub nie bêdzie pRootem
+	// - przechodŸ za nastepnikami inorder
+	while (pNode->rTag == 0 && pNode != pRoot) {
+		pNode = pNode->pRight;
+	}
+	return pNode->pRight;
+}
+
+TreeNode * DoubleThreadedBST::postOrderSuccessor(TreeNode* pNode)
+{
+	if (pNode->rTag == 1)
+	{
+		return pNode->pRight;
+	}
+
+	pNode = pNode->pRight;
+	if (pNode->lTag == 1)
+	{
+		pNode = pNode->pLeft;
+	}
+
+	return pNode;
+}
+
+void DoubleThreadedBST::postOrder(TreeNode * pNode)
+{
+	if (pNode == pRoot) {
+		return;
+	}
+	postOrder(pNode->pLeft);
+	postOrder(pNode->pRight);
+	printf("%d ", pNode->key);
+}
+
 void DoubleThreadedBST::inOrder() {
 
 	printf("Double Threaded Tree InOrder:\n");
@@ -119,5 +160,30 @@ void DoubleThreadedBST::inOrder() {
 		printf("%d ", pNode->key);
 		pNode = inOrderSuccessor(pNode);
 	}
+	printf("\n\n");
+}
+
+void DoubleThreadedBST::preOrder()
+{
+	printf("Double Threaded Tree PreOrder:\n");
+	//zaczynamy od korzenia i lecimy po nastepnikach preOrder
+	TreeNode* pNode = pRoot->pLeft;
+	while (pNode != pRoot) {	
+		printf("%d ", pNode->key);
+		pNode = preOrderSuccessor(pNode);
+	}
+
+	printf("\n\n");
+}
+
+void DoubleThreadedBST::postOrder()
+{
+	printf("Double Threaded Tree PreOrder:\n");
+
+	TreeNode* node = pRoot->pLeft;
+	postOrder(node->pLeft);
+	postOrder(node->pRight);
+	printf("%d ", node->key);
+	
 	printf("\n\n");
 }
