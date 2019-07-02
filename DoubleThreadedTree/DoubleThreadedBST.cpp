@@ -105,6 +105,7 @@ TreeNode* DoubleThreadedBST::inOrderSuccessor(TreeNode * pNode)
 
 void DoubleThreadedBST::inOrder() {
 
+	printf("Double Threaded Tree InOrder:\n");
 	//zaczynamy od lewego dziecka pustego wêz³a
 	TreeNode* pNode = pRoot->pLeft;
 
@@ -118,5 +119,5 @@ void DoubleThreadedBST::inOrder() {
 		printf("%d ", pNode->key);
 		pNode = inOrderSuccessor(pNode);
 	}
-	printf("\n");
+	printf("\n\n");
 }

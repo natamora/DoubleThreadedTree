@@ -4,23 +4,36 @@
 #include "pch.h"
 #include <iostream>
 #include "DoubleThreadedBST.h"
+#include "RobsonBST.h"
 
 int main()
 {
 	DoubleThreadedBST tree = DoubleThreadedBST();
 	tree.insert(5);
-	tree.inOrder();
 	tree.insert(7);
-	tree.inOrder();
 	tree.insert(2);
-	tree.inOrder();
 	tree.insert(1);
-	tree.inOrder();
 	tree.insert(8);
-	tree.inOrder();
 	tree.insert(3);
-	tree.inOrder();
 	tree.insert(6);
 	tree.inOrder();
+
+	// Robson
+	RobsonBST robsonTree = RobsonBST();
+	robsonTree.insert(7);
+	robsonTree.insert(4);
+	robsonTree.insert(8);
+	robsonTree.insert(3);
+	robsonTree.insert(5);
+	robsonTree.insert(2);
+	robsonTree.insert(10);
+	robsonTree.insert(9);
+	robsonTree.insert(6);
+
+	robsonTree.inOrder();
+	robsonTree.preOrder();
+	robsonTree.postOrder();
+
+	//robsonTree.display();
 }
 
